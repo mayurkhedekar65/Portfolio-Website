@@ -41,7 +41,7 @@ const CONTACT_LINKS = [
     icon: FileText,
     label: 'Résumé',
     value: 'Download PDF',
-    href: '/Mayur Khedekar Resume (2).pdf',
+    href: '/Mayur-Khedekar-Resume.pdf',
     description: 'Engineering CV & background',
     external: true,
   },
