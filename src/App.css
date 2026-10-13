@@ -1,0 +1,6 @@
+/* App.css — kept minimal; component styles are co-located */
+/* Only global structural overrides go here */
+
+.app {
+  position: relative;
+}

@@ -1,0 +1,185 @@
+/* ProjectOrbit.css */
+
+.project-orbit {
+  position: relative;
+  outline: none;
+  overflow: visible;
+  width: 100%;
+}
+
+/* ---- 3D Stage ---- */
+.project-orbit__stage {
+  height: var(--orbit-stage-height, 360px);
+  position: relative;
+  cursor: grab;
+  overflow: visible;
+  perspective: var(--orbit-perspective, 1200px);
+  perspective-origin: 50% 50%;
+  /* pan-y allows native vertical page scrolling while JS handles horizontal swipes */
+  touch-action: pan-y;
+}
+
+.project-orbit__stage:active {
+  cursor: grabbing;
+}
+
+.project-orbit__stage--hovered {
+  cursor: grab;
+}
+
+/* The scene container is centered; child cards are positioned in 3D relative to its center */
+.project-orbit__scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Each ProjectWindow transform comes from getWindowStyle */
+.project-orbit__scene > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  transition:
+    opacity 220ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+/* ---- Controls ---- */
+.project-orbit__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--space-2), 2vw, var(--space-4));
+  margin-top: var(--space-4);
+  padding: var(--space-2) 0;
+  position: relative;
+  z-index: 2;
+}
+
+.orbit-btn {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font: inherit;
+  padding: 0;
+}
+
+.orbit-btn:hover {
+  border-color: var(--accent-500);
+  color: var(--accent-400);
+  background: var(--accent-glow);
+  transform: scale(1.05);
+}
+
+.orbit-btn:active {
+  transform: scale(0.97);
+}
+
+.orbit-btn--pause {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  margin-left: var(--space-2);
+  border-color: var(--border-subtle);
+}
+
+.orbit-btn--paused {
+  color: var(--accent-400);
+  border-color: var(--border-accent);
+}
+
+/* Dot indicators */
+.orbit-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 280px;
+}
+
+.orbit-dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.orbit-dot:hover {
+  background: var(--text-muted);
+  transform: scale(1.25);
+}
+
+.orbit-dot--active {
+  width: 20px;
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .project-orbit__controls {
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .orbit-btn {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .orbit-btn--pause {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    margin-left: var(--space-1);
+  }
+
+  .orbit-dots {
+    gap: 5px;
+    max-width: 200px;
+  }
+
+  .orbit-dot {
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+  }
+
+  .orbit-dot--active {
+    width: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-btn:hover {
+    transform: none !important;
+  }
+  .orbit-dot:hover {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,27 @@
+/* Projects.css */
+
+.projects {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects__bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+.projects__subtitle {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: calc(-1 * var(--space-4));
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.02em;
+}

@@ -1,0 +1,193 @@
+/* ============================================================
+   ABOUT SECTION STYLES
+   Two-column editorial layout, technical focus cards, and fluid spacing.
+   ============================================================ */
+
+.about {
+  position: relative;
+  overflow: visible;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(var(--space-6), 3.5vw, var(--space-10));
+  align-items: start;
+}
+
+/* --- Left column: Introduction & Core Engineering Focus --- */
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 520px;
+}
+
+.about__paragraph {
+  font-size: clamp(var(--text-base), 1.05vw, var(--text-lg));
+  color: var(--text-secondary);
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* Structured container for Core Engineering Focus to balance column stature */
+.about__focus-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.about__focus-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-400);
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.about__focus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about__focus-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: clamp(var(--text-xs), 0.95vw, var(--text-sm));
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-weight: 500;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.about__focus-icon {
+  color: var(--accent-400);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.about__focus-item:hover {
+  color: var(--accent-300);
+  transform: translateX(3px);
+}
+
+.about__focus-item:hover .about__focus-icon {
+  transform: translateX(2px);
+}
+
+/* --- Right column: Four Technical Engineering Cards --- */
+.about__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about__pillar {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.about__pillar:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.08);
+}
+
+.about__pillar-number {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--accent-400);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid var(--border-accent);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  margin-top: 2px;
+  flex-shrink: 0;
+  letter-spacing: 0.06em;
+}
+
+.about__pillar-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.about__pillar-label {
+  font-size: clamp(var(--text-sm), 1vw, 0.95rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.about__pillar-text {
+  font-size: clamp(0.8125rem, 0.9vw, var(--text-sm));
+  color: var(--text-secondary);
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* --- Responsive Layout & Stacking --- */
+
+@media (max-width: 960px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .about__text {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__focus-card {
+    padding: var(--space-4);
+  }
+
+  .about__pillar {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .about__pillar-number {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .about__pillar:hover {
+    transform: none !important;
+  }
+  .about__focus-item:hover {
+    transform: none !important;
+  }
+  .about__focus-item:hover .about__focus-icon {
+    transform: none !important;
+  }
+}
